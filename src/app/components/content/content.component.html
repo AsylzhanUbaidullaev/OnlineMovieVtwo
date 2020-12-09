@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="content">
+    <div class="inner-content">
+
+      <!-- Search form
+      <div class="md-form active-cyan-2 mb-3">
+        <input type="search" style="width: 79%; margin-left: 74px" [(ngModel)]="searchText" placeholder="Search" class="form-control"  id="search6" aria-label="Search" mdbInput>
+      </div>-->
+      <div class="row">
+        <input class="form-control mr-sm-2" placeholder="Search movie" aria-label="Search" [(ngModel)]="SearchMovie">
+      </div>
+      <!--List of games-->
+      <div class="sidebar" *ngFor="let list of category | search:SearchMovie">
+        <a class="a" href="#"><img [src]='list.url'/></a>
+        <a class="a" href="#">{{list.name}}</a>
+      </div>
+    </div>
+    <!--Menu-->
+    <div class="menu">
+      <div class="inner-menu">
+        <a href="#" class="menuItem" *ngFor="let menu of menus; let i = index" (click)="check(i)">
+          {{menu | slice:1}}
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
