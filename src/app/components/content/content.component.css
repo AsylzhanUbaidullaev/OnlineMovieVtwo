@@ -1,4 +1,11 @@
-input {
+.container-log{
+  width: 390px;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+
+#input {
   width: 800px;
   margin-bottom: 30px;
   margin-left: 90px;

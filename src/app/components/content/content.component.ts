@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {Movie} from '../../Movie';
+import {User} from '../../User';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-content',
@@ -11,8 +13,38 @@ export class ContentComponent implements OnInit {
   menus = ['/Adventure', '/Action', '/Horror', '/Comedy', '/Detective', '/Cartoon', '/Dramas', '/Documentary', '/Family'];
   SearchMovie = '';
   name: string;
+  loginForm = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl()
+  });
 
   constructor(private dataService: DataService) {
+  }
+  onSubmit() {
+    console.log(this.loginForm.value);
+  }
+  user: User = new User();
+  done: boolean = false;
+  doneLog: boolean = true;
+
+  submit(user: User) {
+    this.dataService.postUser(user)
+      .subscribe(
+        (data: User) => {
+          this.checkUser(this.user, data);
+          this.done = true;
+          this.doneLog = false;
+        },
+        error => console.log(error)
+      );
+  }
+
+  checkUser(user: User, data: User) {
+    if (user.email = data.email) {
+      console.log('Signed In!');
+    } else {
+      console.log('Error');
+    }
   }
 
   category: Movie [] = [];
@@ -50,7 +82,8 @@ export class ContentComponent implements OnInit {
         break;
     }
   }
-    ngOnInit(): void {
-      this.dataService.getMovie().subscribe((data: Movie) => this.category = data['Adventure']);
-    }
+
+  ngOnInit(): void {
+    this.dataService.getMovie().subscribe((data: Movie) => this.category = data['Adventure']);
   }
+}

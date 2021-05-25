@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OnlineMovieVtwo"
+    }
+  },
+  "defaultProject": "OnlineMovieVtwo",
+  "cli": {
+    "analytics": false
+  }
 }
